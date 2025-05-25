@@ -5,13 +5,33 @@ import { Parallax } from 'react-scroll-parallax'
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center pt-16 overflow-hidden">
-      <div className="container-custom py-16 relative">
-        {/* Background Elements */}
-        <Parallax translateY={[50, -50]} className="absolute top-20 left-10 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl" />
-        <Parallax translateY={[-50, 50]} className="absolute bottom-20 right-10 w-64 h-64 bg-secondary-500/10 rounded-full blur-3xl" />
-        
-        <div className="flex flex-col lg:flex-row items-center justify-between relative z-10">
+    <section id="home" className="min-h-screen flex items-center pt-16 relative overflow-hidden">
+      {/* Animated Background Image */}
+      <motion.div 
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 0.15 }}
+        transition={{ duration: 1.5 }}
+        className="absolute inset-0 z-0"
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 mix-blend-overlay" />
+        <motion.img
+          src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          alt="Background"
+          className="w-full h-full object-cover"
+          animate={{ 
+            scale: [1, 1.05, 1],
+            rotate: [0, 1, 0] 
+          }}
+          transition={{ 
+            duration: 20, 
+            repeat: Infinity,
+            ease: "linear" 
+          }}
+        />
+      </motion.div>
+
+      <div className="container-custom py-16 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
